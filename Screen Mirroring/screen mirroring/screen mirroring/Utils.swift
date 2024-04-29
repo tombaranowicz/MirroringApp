@@ -8,6 +8,10 @@
 import Foundation
 
 struct Utils {
+    
+    
+
+    
     static let deviceList: [String: String] = [
         "iPhone1,1": "iPhone",
         "iPhone1,2": "iPhone 3G",

@@ -98,19 +98,16 @@ func parseItem(item: String) {
                 if components.count == 2 {
                     let numericValueString = components[1].trimmingCharacters(in: .whitespaces)
                     
-//                    // Try converting the numeric value to a Double
-//                    if let numericValue = Double(numericValueString) {
-//                        print("Version: \(numericValue)") // Output: Numeric value: 15.03
-//                    } else {
-//                        print("Invalid numeric value")
-//                    }
-                    
-                    if let versionDouble = Double(numericValueString) {
-                        let versionFormatted = String(format: "%.1f", versionDouble).replacingOccurrences(of: ".", with: ",")
-                        print(versionFormatted) // Output: "15,3"
+                    let components = numericValueString.split(separator: ".")
+
+                    // Convert the substrings to integers
+                    if components.count == 2, let major = Int(components[0]), let minor = Int(components[1]) {
+                        print("Major version: \(major)") // Output: Major version: 15
+                        print("Minor version: \(minor)") // Output: Minor version: 3
                     } else {
-                        print("Invalid version string")
+                        print("Invalid version format")
                     }
+
                 }
             } else if (line.contains("Serial Number")) {
                 let components = line.split(separator: ":")
