@@ -13,56 +13,6 @@ import AVKit
 import CoreMediaIO
 import CoreMedia
 
-enum DeviceType {
-    case iPad
-    case iPhone
-}
-
-struct ScreenSize {
-    let width: Int
-    let height: Int
-}
-
-struct ConnectedDevice {
-    let minor: Int
-    let major: Int
-    let serial: String
-    let type: DeviceType
-}
-
-struct SelectedStreamingDevice: Equatable {
-    let captureDevice: AVCaptureDevice
-    let usbDevice: ConnectedDevice
-    let screenSize: ScreenSize
-    
-    init(captureDevice: AVCaptureDevice, usbDevice: ConnectedDevice) {
-        self.captureDevice = captureDevice
-        self.usbDevice = usbDevice
-    
-        var width: Int = 100
-        var height: Int = 100
-        
-        if (self.usbDevice.type == .iPhone) {
-            if let screenSizeString = Utils.resolutionList["iPhone\(self.usbDevice.major),\(self.usbDevice.minor)"] {
-                let components = screenSizeString.split(separator: "x")
-
-                print("components \(components)")
-                
-                if components.count == 2 {
-                    width = Int(components[0])!
-                    height = Int(components[1])!
-                }
-            }
-        }
-        
-        self.screenSize = ScreenSize(width: width/3, height: height/3)
-    }
-    
-    static func ==(lhs: SelectedStreamingDevice, rhs: SelectedStreamingDevice) -> Bool {
-        return lhs.captureDevice == rhs.captureDevice
-    }
-}
-
 struct ContentView: View {
     @State private var selectedDevice: SelectedStreamingDevice?
     @State private var cameras: [AVCaptureDevice] = []
@@ -71,9 +21,24 @@ struct ContentView: View {
 
     
     var body: some View {
+        
         VStack {
             if let selectedDevice {
-                CameraPreviewView(session: session).frame(width: CGFloat(selectedDevice.screenSize.width), height: CGFloat(selectedDevice.screenSize.height))
+                ZStack {
+                    CameraPreviewView(session: session)
+                        .frame(width: CGFloat(selectedDevice.screenSize.width), height: CGFloat(selectedDevice.screenSize.height))
+                        .cornerRadius(selectedDevice.screenSize.cornerRadius) // Set the corner radius here
+                    
+                    Image(.iPhone14ProMaxSpaceBlackPortrait)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: CGFloat(1450/3.01), height: CGFloat(2936/3.01))
+                }.background(TransparentWindow())
+            } else {
+                VStack {
+                    Text("Please connect the device").frame(width: 200, height: 50)
+                    ProgressView() // This creates a spinner
+                }.padding(50)
             }
         }.onChange(of: selectedDevice) { newDevice in
             
@@ -85,23 +50,46 @@ struct ContentView: View {
         }
         .onAppear {
             enableDalDevices()
-            loadCameras()
+            reloadCameras()
 
             NotificationCenter.default.addObserver(
                 forName: .AVCaptureDeviceWasConnected,
                 object: nil,
                 queue: nil
             ) { notification in
-                
-                guard let device = notification.object as? AVCaptureDevice else {
-                        return
-                    }
-                
-                loadCameras()
+                reloadCameras()
+            }
+            
+            NotificationCenter.default.addObserver(
+                forName: .AVCaptureDeviceWasDisconnected,
+                object: nil,
+                queue: nil
+            ) { notification in
+                reloadCameras()
             }
         }
+        .navigationTitle((selectedDevice != nil) ? selectedDevice!.captureDevice.localizedName : "")
+
+//        .toolbar {
+//                    ToolbarItem(placement: .primaryAction) {
+//                        Button("Button 1") {
+//                            // Action for Button 1
+//                        }
+//                    }
+//                    
+//                    ToolbarItem(placement: .primaryAction) {
+//                        Button("Button 2") {
+//                            // Action for Button 2
+//                        }
+//                    }
+//                    
+//                    ToolbarItem(placement: .primaryAction) {
+//                        Button("Button 3") {
+//                            // Action for Button 3
+//                        }
+//                    }
+//                }
     }
-    
     
     func listConnectedDevices() -> [ConnectedDevice] {
         let task = Process()
@@ -207,7 +195,7 @@ struct ContentView: View {
         CMIOObjectSetPropertyData(CMIOObjectID(kCMIOObjectSystemObject), &property, 0, nil, UInt32(sizeOfAllow), &allow)
     }
 
-    func loadCameras() {
+    func reloadCameras() {
         
         let connectedDevices = listConnectedDevices()
         
@@ -218,6 +206,8 @@ struct ContentView: View {
 //        camera.activeFormat.mediaType.rawValue = "muxx"
         
         print("FOUND DEVICES \(devices)")
+        
+        
 //        for camera in devices{
 //            print("CAMERA \(camera.description) ---- \(camera.activeFormat.)") //CAMERA Apple Inc.
 //        }
@@ -228,6 +218,8 @@ struct ContentView: View {
         
         print("FOUND DEVICES FILTERED \(cameras)")
         
+        
+        
         if (cameras.count > 0) {
             let captureDevice = cameras.first!
             let serialNumber = captureDevice.uniqueID.replacingOccurrences(of: "-", with: "")
@@ -237,6 +229,8 @@ struct ContentView: View {
             if (usbDevice != nil) {
                 selectedDevice = SelectedStreamingDevice(captureDevice: captureDevice, usbDevice: usbDevice!)
             }
+        } else {
+            selectedDevice = nil
         }
     }
     

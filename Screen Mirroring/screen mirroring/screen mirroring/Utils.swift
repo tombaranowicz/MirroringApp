@@ -6,11 +6,9 @@
 //
 
 import Foundation
+import AVKit
 
 struct Utils {
-    
-    
-
     
     static let deviceList: [String: String] = [
         "iPhone1,1": "iPhone",
@@ -308,4 +306,344 @@ struct Utils {
         "iPad14,5": "2048x2732", // iPad Pro 12.9 inch 6th Gen
         "iPad14,6": "2048x2732" // iPad Pro 12.9 inch 6th Gen
     ]
+    
+    static let deviceCornerRadius: [String: String] = [
+        "iPhone1,1": "39.0",
+        "iPhone1,2": "39.0",
+        "iPhone2,1": "39.0",
+        "iPhone3,1": "39.0",
+        "iPhone3,2": "39.0",
+        "iPhone3,3": "39.0",
+        "iPhone4,1": "39.0",
+        "iPhone5,1": "41.5",
+        "iPhone5,2": "41.5",
+        "iPhone5,3": "44.0",
+        "iPhone5,4": "44.0",
+        "iPhone6,1": "47.33",
+        "iPhone6,2": "47.33",
+        "iPhone7,1": "53.33",
+        "iPhone7,2": "47.33",
+        "iPhone8,1": "47.33",
+        "iPhone8,2": "53.33",
+        "iPhone8,4": "41.5",
+        "iPhone9,1": "47.33",
+        "iPhone9,2": "53.33",
+        "iPhone9,3": "47.33",
+        "iPhone9,4": "53.33",
+        "iPhone10,1": "47.33",
+        "iPhone10,2": "53.33",
+        "iPhone10,3": "55.0",
+        "iPhone10,4": "47.33",
+        "iPhone10,5": "53.33",
+        "iPhone10,6": "55.0",
+        "iPhone11,2": "47.33",
+        "iPhone11,4": "53.33",
+        "iPhone11,6": "53.33",
+        "iPhone11,8": "53.33",
+        "iPhone12,1": "47.33",
+        "iPhone12,3": "47.33",
+        "iPhone12,5": "53.33",
+        "iPhone12,8": "53.33",
+        "iPhone13,1": "47.33",
+        "iPhone13,2": "47.33",
+        "iPhone13,3": "47.33",
+        "iPhone13,4": "53.33",
+        "iPhone13,5": "53.33",
+        "iPhone13,6": "53.33",
+        "iPhone13,7": "53.33",
+        "iPhone14,2": "55.0",
+        "iPhone14,3": "55.0",
+        "iPhone14,4": "55.0",
+        "iPhone14,5": "55.0",
+        "iPhone14,6": "55.0",
+        "iPhone14,7": "55.0",
+        "iPhone14,8": "55.0",
+        "iPhone15,2": "55.0",
+        "iPhone15,3": "55.0",
+        "iPhone16,1": "55.0",
+        "iPhone16,2": "55.0",
+        "iPad1,1": "18.0",
+        "iPad1,2": "18.0",
+        "iPad2,1": "18.0",
+        "iPad2,2": "18.0",
+        "iPad2,3": "18.0",
+        "iPad2,4": "18.0",
+        "iPad3,1": "18.0",
+        "iPad3,2": "18.0",
+        "iPad3,3": "18.0",
+        "iPad2,5": "18.0",
+        "iPad2,6": "18.0",
+        "iPad2,7": "18.0",
+        "iPad3,4": "18.0",
+        "iPad3,5": "18.0",
+        "iPad3,6": "18.0",
+        "iPad4,1": "18.0",
+        "iPad4,2": "18.0",
+        "iPad4,3": "18.0",
+        "iPad4,4": "18.0",
+        "iPad4,5": "18.0",
+        "iPad4,6": "18.0",
+        "iPad4,7": "18.0",
+        "iPad4,8": "18.0",
+        "iPad4,9": "18.0",
+        "iPad5,1": "18.0",
+        "iPad5,2": "18.0",
+        "iPad5,3": "18.0",
+        "iPad5,4": "18.0",
+        "iPad6,3": "18.0",
+        "iPad6,4": "18.0",
+        "iPad6,7": "18.0",
+        "iPad6,8": "18.0",
+        "iPad6,11": "18.0",
+        "iPad6,12": "18.0",
+        "iPad7,1": "18.0",
+        "iPad7,2": "18.0",
+        "iPad7,3": "18.0",
+        "iPad7,4": "18.0",
+        "iPad7,5": "18.0",
+        "iPad7,6": "18.0",
+        "iPad7,11": "18.0",
+        "iPad7,12": "18.0",
+        "iPad8,1": "18.0",
+        "iPad8,2": "18.0",
+        "iPad8,3": "18.0",
+        "iPad8,4": "18.0",
+        "iPad8,5": "18.0",
+        "iPad8,6": "18.0",
+        "iPad8,7": "18.0",
+        "iPad8,8": "18.0",
+        "iPad8,9": "18.0",
+        "iPad8,10": "18.0",
+        "iPad8,11": "18.0",
+        "iPad8,12": "18.0",
+        "iPad11,1": "18.0",
+        "iPad11,2": "18.0",
+        "iPad11,3": "18.0",
+        "iPad11,4": "18.0",
+        "iPad11,6": "18.0",
+        "iPad12,1": "18.0",
+        "iPad12,2": "18.0",
+        "iPad14,1": "18.0",
+        "iPad14,2": "18.0",
+        "iPad13,1": "18.0",
+        "iPad13,2": "18.0",
+        "iPad13,4": "18.0",
+        "iPad13,5": "18.0",
+        "iPad13,6": "18.0",
+        "iPad13,7": "18.0",
+        "iPad13,8": "18.0",
+        "iPad13,9": "18.0",
+        "iPad13,10": "18.0",
+        "iPad13,11": "18.0",
+        "iPad13,16": "18.0",
+        "iPad13,17": "18.0",
+        "iPad13,18": "18.0",
+        "iPad13,19": "18.0",
+        "iPad14,3": "18.0",
+        "iPad14,4": "18.0",
+        "iPad14,5": "18.0",
+        "iPad14,6": "18.0"
+    ]
+    
+    static let deviceScaleFactors: [String: Double] = [
+        // iPhones
+        "iPhone1,1": 1.0,   // Original iPhone
+        "iPhone1,2": 1.0,   // iPhone 3G
+        "iPhone2,1": 1.0,   // iPhone 3GS
+        "iPhone3,1": 1.0,   // iPhone 4
+        "iPhone3,2": 1.0,   // iPhone 4 GSM Rev A
+        "iPhone3,3": 1.0,   // iPhone 4 CDMA
+        "iPhone4,1": 1.0,   // iPhone 4S
+        "iPhone5,1": 2.0,   // iPhone 5 (GSM)
+        "iPhone5,2": 2.0,   // iPhone 5 (GSM+CDMA)
+        "iPhone5,3": 2.0,   // iPhone 5C (GSM)
+        "iPhone5,4": 2.0,   // iPhone 5C (Global)
+        "iPhone6,1": 2.0,   // iPhone 5S (GSM)
+        "iPhone6,2": 2.0,   // iPhone 5S (Global)
+        "iPhone7,1": 3.0,   // iPhone 6 Plus
+        "iPhone7,2": 3.0,   // iPhone 6
+        "iPhone8,1": 3.0,   // iPhone 6s
+        "iPhone8,2": 3.0,   // iPhone 6s Plus
+        "iPhone8,4": 2.0,   // iPhone SE (GSM)
+        "iPhone9,1": 3.0,   // iPhone 7
+        "iPhone9,2": 3.0,   // iPhone 7 Plus
+        "iPhone9,3": 2.0,   // iPhone 7
+        "iPhone9,4": 2.0,   // iPhone 7 Plus
+        "iPhone10,1": 2.0,  // iPhone 8
+        "iPhone10,2": 2.0,  // iPhone 8 Plus
+        "iPhone10,3": 3.0,  // iPhone X Global
+        "iPhone10,4": 2.0,  // iPhone 8
+        "iPhone10,5": 2.0,  // iPhone 8 Plus
+        "iPhone10,6": 3.0,  // iPhone X GSM
+        "iPhone11,2": 3.0,  // iPhone XS
+        "iPhone11,4": 3.0,  // iPhone XS Max
+        "iPhone11,6": 3.0,  // iPhone XS Max Global
+        "iPhone11,8": 2.0,  // iPhone XR
+        "iPhone12,1": 3.0,  // iPhone 11
+        "iPhone12,3": 3.0,  // iPhone 11 Pro
+        "iPhone12,5": 3.0,  // iPhone 11 Pro Max
+        "iPhone12,8": 2.0,  // iPhone SE 2nd Gen
+        "iPhone13,1": 3.0,  // iPhone 12 Mini
+        "iPhone13,2": 3.0,  // iPhone 12
+        "iPhone13,3": 3.0,  // iPhone 12 Pro
+        "iPhone13,4": 3.0,  // iPhone 12 Pro Max
+        "iPhone14,2": 3.0,  // iPhone 13 Pro
+        "iPhone14,3": 3.0,  // iPhone 13 Pro Max
+        "iPhone14,4": 3.0,  // iPhone 13 Mini
+        "iPhone14,5": 3.0,  // iPhone 13
+        "iPhone14,6": 3.0,  // iPhone 14 Pro Max
+        "iPhone14,7": 3.0,  // iPhone 14
+        "iPhone14,8": 3.0,  // iPhone 14 Plus
+        "iPhone15,2": 3.0,  // iPhone 14 Pro
+        "iPhone15,3": 3.0,  // iPhone 14 Pro Max
+        // iPads
+        "iPad1,1": 1.0,     // iPad
+        "iPad1,2": 1.0,     // iPad 3G
+        "iPad2,1": 1.0,     // 2nd Gen iPad
+        "iPad2,2": 1.0,     // 2nd Gen iPad GSM
+        "iPad2,3": 1.0,     // 2nd Gen iPad CDMA
+        "iPad2,4": 1.0,     // 2nd Gen iPad New Revision
+        "iPad3,1": 1.0,     // 3rd Gen iPad
+        "iPad3,2": 1.0,     // 3rd Gen iPad CDMA
+        "iPad3,3": 1.0,     // 3rd Gen iPad GSM
+        "iPad2,5": 1.0,     // iPad mini
+        "iPad2,6": 1.0,     // iPad mini GSM+LTE
+        "iPad2,7": 1.0,     // iPad mini CDMA+LTE
+        "iPad3,4": 1.0,     // 4th Gen iPad
+        "iPad3,5": 1.0,     // 4th Gen iPad GSM+LTE
+        "iPad3,6": 1.0,     // 4th Gen iPad CDMA+LTE
+        "iPad4,1": 2.0,     // iPad Air (WiFi)
+        "iPad4,2": 2.0,     // iPad Air (GSM+CDMA)
+        "iPad4,3": 2.0,     // 1st Gen iPad Air (China)
+        "iPad4,4": 2.0,     // iPad mini Retina (WiFi)
+        "iPad4,5": 2.0,     // iPad mini Retina (GSM+CDMA)
+        "iPad4,6": 2.0,     // iPad mini Retina (China)
+        "iPad4,7": 2.0,     // iPad mini 3 (WiFi)
+        "iPad4,8": 2.0,     // iPad mini 3 (GSM+CDMA)
+        "iPad4,9": 2.0,     // iPad Mini 3 (China)
+        "iPad5,1": 2.0,     // iPad mini 4 (WiFi)
+        "iPad5,2": 2.0,     // 4th Gen iPad mini (WiFi+Cellular)
+        "iPad5,3": 2.0,     // iPad Air 2 (WiFi)
+        "iPad5,4": 2.0,     // iPad Air 2 (Cellular)
+        "iPad6,3": 2.0,     // iPad Pro (9.7 inch, WiFi)
+        "iPad6,4": 2.0,     // iPad Pro (9.7 inch, WiFi+LTE)
+        "iPad6,7": 3.0,     // iPad Pro (12.9 inch, WiFi)
+        "iPad6,8": 3.0,     // iPad Pro (12.9 inch, WiFi+LTE)
+        "iPad6,11": 2.0,    // iPad (2017)
+        "iPad6,12": 2.0,    // iPad (2017)
+        "iPad7,1": 3.0,     // iPad Pro 2nd Gen (WiFi)
+        "iPad7,2": 3.0,     // iPad Pro 2nd Gen (WiFi+Cellular)
+        "iPad7,3": 2.0,     // iPad Pro 10.5-inch 2nd Gen
+        "iPad7,4": 2.0,     // iPad Pro 10.5-inch 2nd Gen
+        "iPad7,5": 2.0,     // iPad 6th Gen (WiFi)
+        "iPad7,6": 2.0,     // iPad 6th Gen (WiFi+Cellular)
+        "iPad7,11": 2.0,    // iPad 7th Gen 10.2-inch (WiFi)
+        "iPad7,12": 2.0,    // iPad 7th Gen 10.2-inch (WiFi+Cellular)
+        "iPad8,1": 3.0,     // iPad Pro 11 inch 3rd Gen (WiFi)
+        "iPad8,2": 3.0,     // iPad Pro 11 inch 3rd Gen (1TB, WiFi)
+        "iPad8,3": 3.0,     // iPad Pro 11 inch 3rd Gen (WiFi+Cellular)
+        "iPad8,4": 3.0,     // iPad Pro 11 inch 3rd Gen (1TB, WiFi+Cellular)
+        "iPad8,5": 3.0,     // iPad Pro 12.9 inch 3rd Gen (WiFi)
+        "iPad8,6": 3.0,     // iPad Pro 12.9 inch 3rd Gen (1TB, WiFi)
+        "iPad8,7": 3.0,     // iPad Pro 12.9 inch 3rd Gen (WiFi+Cellular)
+        "iPad8,8": 3.0,     // iPad Pro 12.9 inch 3rd Gen (1TB, WiFi+Cellular)
+        "iPad8,9": 3.0,     // iPad Pro 11 inch 4th Gen (WiFi)
+        "iPad8,10": 3.0,    // iPad Pro 11 inch 4th Gen (WiFi+Cellular)
+        "iPad8,11": 3.0,    // iPad Pro 12.9 inch 4th Gen (WiFi)
+        "iPad8,12": 3.0,    // iPad Pro 12.9 inch 4th Gen (WiFi+Cellular)
+        "iPad11,1": 3.0,    // iPad mini 5th Gen (WiFi)
+        "iPad11,2": 3.0,    // iPad mini 5th Gen
+        "iPad11,3": 3.0,    // iPad Air 3rd Gen (WiFi)
+        "iPad11,4": 3.0,    // iPad Air 3rd Gen
+        "iPad11,6": 2.0,    // iPad 8th Gen (WiFi)
+        "iPad11,7": 2.0,    // iPad 8th Gen (WiFi+Cellular)
+        "iPad12,1": 2.0,    // iPad 9th Gen (WiFi)
+        "iPad12,2": 2.0,    // iPad 9th Gen (WiFi+Cellular)
+        "iPad14,1": 3.0,    // iPad mini 6th Gen (WiFi)
+        "iPad14,2": 3.0,    // iPad mini 6th Gen (WiFi+Cellular)
+        "iPad13,1": 3.0,    // iPad Air 4th Gen (WiFi)
+        "iPad13,2": 3.0,    // iPad Air 4th Gen (WiFi+Cellular)
+        "iPad13,4": 3.0,    // iPad Pro 11 inch 5th Gen
+        "iPad13,5": 3.0,    // iPad Pro 11 inch 5th Gen
+        "iPad13,6": 3.0,    // iPad Pro 11 inch 5th Gen
+        "iPad13,7": 3.0,    // iPad Pro 11 inch 5th Gen
+        "iPad13,8": 3.0,    // iPad Pro 12.9 inch 5th Gen
+        "iPad13,9": 3.0,    // iPad Pro 12.9 inch 5th Gen
+        "iPad13,10": 3.0,   // iPad Pro 12.9 inch 5th Gen
+        "iPad13,11": 3.0,   // iPad Pro 12.9 inch 5th Gen
+        "iPad13,16": 3.0,   // iPad Air 5th Gen (WiFi)
+        "iPad13,17": 3.0,   // iPad Air 5th Gen (WiFi+Cellular)
+        "iPad13,18": 2.0,   // iPad 10th Gen
+        "iPad13,19": 2.0,   // iPad 10th Gen
+        "iPad14,3": 3.0,    // iPad Pro 11 inch 4th Gen
+        "iPad14,4": 3.0,    // iPad Pro 11 inch 4th Gen
+        "iPad14,5": 3.0,    // iPad Pro 12.9 inch 6th Gen
+        "iPad14,6": 3.0     // iPad Pro 12.9 inch 6th Gen
+    ]
+}
+
+enum DeviceType {
+    case iPad
+    case iPhone
+}
+
+struct ScreenSize {
+    let width: Int
+    let height: Int
+    let scaleFactor: Double
+    let cornerRadius: Double
+}
+
+struct ConnectedDevice {
+    let minor: Int
+    let major: Int
+    let serial: String
+    let type: DeviceType
+}
+
+struct SelectedStreamingDevice: Equatable {
+    let captureDevice: AVCaptureDevice
+    let usbDevice: ConnectedDevice
+    let screenSize: ScreenSize
+    
+    init(captureDevice: AVCaptureDevice, usbDevice: ConnectedDevice) {
+        self.captureDevice = captureDevice
+        self.usbDevice = usbDevice
+    
+        var width: Int = 100
+        var height: Int = 100
+        var corneradius: Double = 0.0
+        var scaleFactor: Double = 1.0
+        
+        let deviceId = "\(self.usbDevice.type == .iPhone ? "iPhone" : "iPad")\(self.usbDevice.major),\(self.usbDevice.minor)"
+        
+        print("Device Identifier: \(deviceId)")
+        
+        if let screenSizeString = Utils.resolutionList[deviceId] {
+            let components = screenSizeString.split(separator: "x")
+
+            if components.count == 2 {
+                width = Int(components[0])!
+                height = Int(components[1])!
+            }
+        }
+        
+        if let cornerRadiusString = Utils.deviceCornerRadius[deviceId] {
+            corneradius = Double(cornerRadiusString) ?? 0.0
+        }
+        
+        if let scaleFactorString = Utils.deviceScaleFactors[deviceId] {
+            scaleFactor = Double(scaleFactorString)
+        }
+        
+        
+        self.screenSize = ScreenSize(width: width/Int(scaleFactor), height: height/Int(scaleFactor), scaleFactor: scaleFactor, cornerRadius: corneradius)
+        
+        print("created capture device \(self.screenSize) - \(captureDevice.localizedName)")
+//        created capture device ScreenSize(width: 428, height: 926, scaleFactor: 3.0, cornerRadius: 55.0)
+    }
+    
+    static func ==(lhs: SelectedStreamingDevice, rhs: SelectedStreamingDevice) -> Bool {
+        return lhs.captureDevice == rhs.captureDevice
+    }
 }
