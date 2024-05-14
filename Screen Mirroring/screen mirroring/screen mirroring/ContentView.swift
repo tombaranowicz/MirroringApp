@@ -12,6 +12,9 @@ import Foundation
 import AVKit
 import CoreMediaIO
 import CoreMedia
+import SwiftUI
+import Cocoa
+
 
 struct ContentView: View {
     @State private var selectedDevice: SelectedStreamingDevice?
@@ -38,7 +41,7 @@ struct ContentView: View {
                 VStack {
                     Text("Please connect the device").frame(width: 200, height: 50)
                     ProgressView() // This creates a spinner
-                }.padding(50)
+                }.padding(50).background(TransparentWindow())
             }
         }.onChange(of: selectedDevice) { newDevice in
             
@@ -69,26 +72,20 @@ struct ContentView: View {
             }
         }
         .navigationTitle((selectedDevice != nil) ? selectedDevice!.captureDevice.localizedName : "")
-
-//        .toolbar {
-//                    ToolbarItem(placement: .primaryAction) {
-//                        Button("Button 1") {
-//                            // Action for Button 1
-//                        }
-//                    }
-//                    
-//                    ToolbarItem(placement: .primaryAction) {
-//                        Button("Button 2") {
-//                            // Action for Button 2
-//                        }
-//                    }
-//                    
-//                    ToolbarItem(placement: .primaryAction) {
-//                        Button("Button 3") {
-//                            // Action for Button 3
-//                        }
-//                    }
-//                }
+        .toolbar {
+                    ToolbarItemGroup(placement: .primaryAction) {
+                        Menu {
+                                ForEach(cameras, id: \.self) { camera in
+                                    Button(camera.localizedName) {
+                                        selectCamera(captureDevice: camera)
+                                    }
+                                }
+                            } label: {
+                                Image(systemName: "ipad.and.iphone")
+                                    .padding(.horizontal, 4)
+                            }
+                    }
+                }
     }
     
     func listConnectedDevices() -> [ConnectedDevice] {
@@ -197,7 +194,7 @@ struct ContentView: View {
 
     func reloadCameras() {
         
-        let connectedDevices = listConnectedDevices()
+        
         
         let devices = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.external], mediaType: nil, position: .unspecified).devices
         
@@ -218,23 +215,30 @@ struct ContentView: View {
         
         print("FOUND DEVICES FILTERED \(cameras)")
         
-        
-        
         if (cameras.count > 0) {
             let captureDevice = cameras.first!
-            let serialNumber = captureDevice.uniqueID.replacingOccurrences(of: "-", with: "")
+            selectCamera(captureDevice: captureDevice)
+        } else {
+            selectCamera(captureDevice: nil)
+        }
+    }
+    
+    private func selectCamera(captureDevice: AVCaptureDevice?) {
+        if (captureDevice != nil) {
+            let connectedDevices = listConnectedDevices()
+            let serialNumber = captureDevice!.uniqueID.replacingOccurrences(of: "-", with: "")
             
             let usbDevice = connectedDevices.filter { $0.serial == serialNumber }.first
             
             if (usbDevice != nil) {
-                selectedDevice = SelectedStreamingDevice(captureDevice: captureDevice, usbDevice: usbDevice!)
+                selectedDevice = SelectedStreamingDevice(captureDevice: captureDevice!, usbDevice: usbDevice!)
             }
         } else {
             selectedDevice = nil
         }
     }
     
-    func setupCamera(device: SelectedStreamingDevice) {
+    private func setupCamera(device: SelectedStreamingDevice) {
         // Remove previous if set.
         if currentVideoInput != nil {
             session.removeInput(currentVideoInput!)

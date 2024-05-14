@@ -9,56 +9,15 @@ import SwiftUI
 
 @main
 struct screen_mirroringApp: App {
+    
+    @Environment(\.scenePhase) private var scenePhase
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                
-//                .background(TransparentWindow())
-//                .navigationTitle("My Title")
-                .presentedWindowToolbarStyle(.expanded)
-//                .navigationSubtitle("Subtitle")
-//                .toolbarBackground(.white)
-//                        .toolbarColorScheme(.dark)
-//                        .toolbar { CustomToolbarView() }
-                        
+            ContentView()            
         }
         .windowResizabilityContentSize()
-        
-//        .windowStyle(HiddenTitleBarWindowStyle()) // Hide the title bar for a borderless window
-//        .windowToolbarStyle(UnifiedCompactWindowToolbarStyle()) // Hide the toolbar
     }
-}
-
-struct CustomToolbarView: ToolbarContent {
-    @State private var isButtonEnabled = false
-    
-    var body: some ToolbarContent {
-        ToolbarItem(placement: .primaryAction) {
-            Button(action: {
-                // Add action for button
-            }) {
-                Image(systemName: "square.and.pencil")
-            }
-            .disabled(!isButtonEnabled)
-        }
-        
-        ToolbarItem(placement: .secondaryAction) {
-            Button(action: {
-                // Add action for button
-            }) {
-                Image(systemName: "gearshape.fill")
-            }
-        }
-        
-        ToolbarItem(placement: .status) {
-            Toggle("Enable Button", isOn: $isButtonEnabled)
-        }
-    }
-}
-
-struct VisualEffect: NSViewRepresentable {
-   func makeNSView(context: Self.Context) -> NSView { return NSVisualEffectView() }
-   func updateNSView(_ nsView: NSView, context: Context) { }
 }
 
 class TransparentWindowView: NSView {
