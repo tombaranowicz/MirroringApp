@@ -7,6 +7,9 @@
 
 import Foundation
 import AVKit
+import SwiftUI
+import CoreGraphics
+import VideoToolbox
 
 struct Utils {
     
@@ -646,4 +649,19 @@ struct SelectedStreamingDevice: Equatable {
     static func ==(lhs: SelectedStreamingDevice, rhs: SelectedStreamingDevice) -> Bool {
         return lhs.captureDevice == rhs.captureDevice
     }
+}
+
+extension CGImage {
+  static func create(from cvPixelBuffer: CVPixelBuffer?) -> CGImage? {
+    guard let pixelBuffer = cvPixelBuffer else {
+      return nil
+    }
+
+    var image: CGImage?
+    VTCreateCGImageFromCVPixelBuffer(
+      pixelBuffer,
+      options: nil,
+      imageOut: &image)
+    return image
+  }
 }

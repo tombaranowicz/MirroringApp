@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA7D0F252BF7602200B13FB3 /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7D0F242BF7602200B13FB3 /* Recorder.swift */; };
 		AAC2959B2BDAAB5000DB3A83 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC2959A2BDAAB5000DB3A83 /* Utils.swift */; };
 		AAFA71792BD79FD100F552E8 /* screen_mirroringApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFA71782BD79FD100F552E8 /* screen_mirroringApp.swift */; };
 		AAFA717B2BD79FD100F552E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFA717A2BD79FD100F552E8 /* ContentView.swift */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA7D0F242BF7602200B13FB3 /* Recorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
 		AAC2959A2BDAAB5000DB3A83 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		AAFA71752BD79FD100F552E8 /* screen mirroring.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "screen mirroring.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAFA71782BD79FD100F552E8 /* screen_mirroringApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = screen_mirroringApp.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 				AAFA71782BD79FD100F552E8 /* screen_mirroringApp.swift */,
 				AAFA717A2BD79FD100F552E8 /* ContentView.swift */,
 				AAC2959A2BDAAB5000DB3A83 /* Utils.swift */,
+				AA7D0F242BF7602200B13FB3 /* Recorder.swift */,
 				AAFA717C2BD79FD200F552E8 /* Assets.xcassets */,
 				AAFA71812BD79FD200F552E8 /* screen_mirroring.entitlements */,
 				AAFA717E2BD79FD200F552E8 /* Preview Content */,
@@ -145,6 +148,7 @@
 				AAFA717B2BD79FD100F552E8 /* ContentView.swift in Sources */,
 				AAFA71792BD79FD100F552E8 /* screen_mirroringApp.swift in Sources */,
 				AAC2959B2BDAAB5000DB3A83 /* Utils.swift in Sources */,
+				AA7D0F252BF7602200B13FB3 /* Recorder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
