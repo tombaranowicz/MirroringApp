@@ -17,6 +17,8 @@ struct screen_mirroringApp: App {
             ContentView()            
         }
         .windowResizabilityContentSize()
+//        .windowResizability(.contentSize) // Allow the window to be resized
+//                .defaultSize(width: 400, height: 400) // Set the default size
     }
 }
 

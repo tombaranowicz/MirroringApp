@@ -608,6 +608,7 @@ struct SelectedStreamingDevice: Equatable {
     let captureDevice: AVCaptureDevice
     let usbDevice: ConnectedDevice
     let screenSize: ScreenSize
+    let deviceName: String
     
     init(captureDevice: AVCaptureDevice, usbDevice: ConnectedDevice) {
         self.captureDevice = captureDevice
@@ -639,11 +640,15 @@ struct SelectedStreamingDevice: Equatable {
             scaleFactor = Double(scaleFactorString)
         }
         
+        if let deviceName = Utils.deviceList[deviceId] {
+            self.deviceName = deviceName
+        } else {
+            self.deviceName = deviceId
+        }
         
         self.screenSize = ScreenSize(width: width/Int(scaleFactor), height: height/Int(scaleFactor), scaleFactor: scaleFactor, cornerRadius: corneradius)
         
         print("created capture device \(self.screenSize) - \(captureDevice.localizedName)")
-//        created capture device ScreenSize(width: 428, height: 926, scaleFactor: 3.0, cornerRadius: 55.0)
     }
     
     static func ==(lhs: SelectedStreamingDevice, rhs: SelectedStreamingDevice) -> Bool {

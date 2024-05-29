@@ -21,8 +21,6 @@ import ImageIO
 
 class Recorder: NSObject, AVCaptureFileOutputRecordingDelegate, ObservableObject {
     
-//    @Published var sessionSetupDone: Bool = false
-    
     @Published var session = AVCaptureSession() // session is now @Published
     @Published var isRecording = false
     
@@ -73,11 +71,8 @@ class Recorder: NSObject, AVCaptureFileOutputRecordingDelegate, ObservableObject
     func startRecorder() {
         print("START SESSION")
         
-//        if (!sessionSetupDone) {
-            setupSession()
-//        } else {
-            startSession()
-//        }
+        setupSession()
+        startSession()
     }
     
     func stopRecorder() {
@@ -143,16 +138,6 @@ class Recorder: NSObject, AVCaptureFileOutputRecordingDelegate, ObservableObject
                 self.showError(errorMessage: "Camera access is required to use Video Recorder.")
             }
         }
-        
-//        AVCaptureDevice.requestAccess(for: .audio) { granted in
-//            if granted {
-//                DispatchQueue.main.async {
-//                    self.setupMicrophones()
-//                }
-//            } else {
-//                self.showError(errorMessage: "Microphone access is required to use Video Recorder.")
-//            }
-//        }
     }
     
     func setupCamera() {
@@ -174,87 +159,7 @@ class Recorder: NSObject, AVCaptureFileOutputRecordingDelegate, ObservableObject
         ) { notification in
             self.reloadCameras()
         }
-//        let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera, .builtInTelephotoCamera, .builtInUltraWideCamera ], mediaType: .video, position: .unspecified)
-//        
-//        availableCameras = discoverySession.devices
-//        
-//        if availableCameras.isEmpty {
-//            self.showError(errorMessage: "No available cameras found.")
-//            return
-//        }
-//        
-//        selectCamera(at: selectedCameraIndex)
     }
-    
-//    func setupMicrophones() {
-//        let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.microphone], mediaType: .audio, position: .unspecified)
-//        
-//        availableMicrophones = discoverySession.devices
-//        
-//        if availableMicrophones.isEmpty {
-//            self.showError(errorMessage: "No available microphones found.")
-//            return
-//        }
-//        
-//        selectMicrophone(at: selectedMicrophoneIndex)
-//    }
-    
-//    func selectCamera(at index: Int) {
-//        guard index >= 0 && index < availableCameras.count else { return }
-//        
-//        do {
-//            // Remove previous if set.
-//            if currentVideoInput != nil {
-//                session.removeInput(currentVideoInput!)
-//                currentVideoInput = nil
-//            }
-//            
-//            // Set new video input.
-//            let videoDevice = availableCameras[index]
-//            let videoInput = try AVCaptureDeviceInput(device: videoDevice)
-//            session.addInput(videoInput)
-//            currentVideoInput = videoInput
-//            
-//            let videoConnection = self.videoOutput.connection(with: .video)
-//            videoConnection?.videoOrientation = .portrait
-//            
-//            self.selectedCameraIsFrontFace = videoDevice.position == .front
-//            
-//            if currentAudioInput != nil && currentVideoInput != nil {
-//                self.sessionSetupDone = true
-//                self.startSession()
-//            }
-//            
-//        } catch {
-//            self.showError(errorMessage: "Error selecting camera: \(error.localizedDescription)")
-//        }
-//    }
-//    
-//    func selectMicrophone(at index: Int) {
-//        guard index >= 0 && index < availableMicrophones.count else { return }
-//        
-//        do {
-//            // Remove previous if set.
-//            if currentAudioInput != nil {
-//                session.removeInput(currentAudioInput!)
-//                currentAudioInput = nil
-//            }
-//            
-//            // Set new audio input.
-//            let audioDevice = availableMicrophones[index]
-//            let audioInput = try AVCaptureDeviceInput(device: audioDevice)
-//            session.addInput(audioInput)
-//            currentAudioInput = audioInput
-//            
-//            if currentAudioInput != nil && currentVideoInput != nil {
-//                self.sessionSetupDone = true
-//                self.startSession()
-//            }
-//            
-//        } catch {
-//            self.showError(errorMessage: "Error selecting microphone: \(error.localizedDescription)")
-//        }
-//    }
     
 //    func startRecording() {
 //        guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("video.mp4") else { return }
@@ -300,9 +205,6 @@ class Recorder: NSObject, AVCaptureFileOutputRecordingDelegate, ObservableObject
     }
     
     func reloadCameras() {
-        
-        
-        
         let devices = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.external], mediaType: nil, position: .unspecified).devices
         
 //        isContinuityCamera = false
@@ -348,6 +250,7 @@ class Recorder: NSObject, AVCaptureFileOutputRecordingDelegate, ObservableObject
             
             if (usbDevice != nil) {
                 selectedDevice = SelectedStreamingDevice(captureDevice: captureDevice!, usbDevice: usbDevice!)
+                frame = nil
             }
         } else {
             selectedDevice = nil
