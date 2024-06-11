@@ -753,3 +753,11 @@ extension CGImage {
     return image
   }
 }
+
+extension View {
+    func calculateScaleFactor(innerSize: CGSize, outerSize: CGSize) -> CGFloat {
+        let widthScale = outerSize.width / innerSize.width
+        let heightScale = outerSize.height / innerSize.height
+        return max(widthScale, heightScale)
+    }
+}

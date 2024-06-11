@@ -13,11 +13,6 @@ struct screen_mirroringApp: App {
     @Environment(\.scenePhase) private var scenePhase
     
     var body: some Scene {
-//        MenuBarExtra("iPhone Mirror", systemImage: "rectangle.stack.fill") {
-//            //            ContentView()
-//            AppMenu()
-//        }.menuBarExtraStyle(.window)
-//        
         WindowGroup {
             ContentView()
         }

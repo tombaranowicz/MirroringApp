@@ -35,22 +35,41 @@ struct iPadBezelView<Content: View>: View {
     }
 }
 
+//struct iPhoneBezelView<Content: View>: View {
+//    var content: Content
+//    
+//    init(@ViewBuilder content: () -> Content) {
+//        self.content = content()
+//    }
+//    
+//    var body: some View {
+//        
+//        
+//        content
+//            .padding(.horizontal, 16) // Add horizontal padding
+//            .padding(.vertical, 24)   // Add vertical padding
+//            .background(Color.black)  // Background color to simulate bezel
+//            .clipShape(RoundedRectangle(cornerRadius: 60, style: .continuous)) // Rounded corners
+//            .overlay(
+//                RoundedRectangle(cornerRadius: 60, style: .continuous)
+//                    .stroke(Color.gray, lineWidth: 2) // Border stroke
+//            )
+//    }
+//}
+
 extension View {
     func iPadBezel() -> some View {
         iPadBezelView {
             self
         }
     }
-}
-
-//// Define a preference key to store the size of the view
-//struct ViewSizeKey: PreferenceKey {
-//    static var defaultValue: CGSize = .zero
-//
-//    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
-//        value = nextValue()
+    
+//    func iPhoneBezel() -> some View {
+//        iPhoneBezelView {
+//            self
+//        }
 //    }
-//}
+}
 
 struct ContentView: View {
     
@@ -69,14 +88,15 @@ struct ContentView: View {
                                     .iPadBezel()
                                     .padding(10)
                             } else {
-                                iPhoneFrameView(image: image, screenSize: recorder.selectedDevice!.screenSize)
-                                    .cornerRadius(recorder.selectedDevice!.screenSize.cornerRadius)
+                                iPhoneFrameView(image: image, screenSize: recorder.selectedDevice!.screenSize, viewSize: self.viewSize)
+                                    .cornerRadius(recorder.selectedDevice!.screenSize.cornerRadius/calculateScaleFactor(innerSize: viewSize, outerSize: CGSize(width: image.width+100, height: image.height+140)))
+                                
                                 
                                 if let bezelImage = NSImage(named: "\(recorder.selectedDevice!.deviceName) - \(image.height > image.width ? "Portrait" : "Landscape")") {
                                     Image(nsImage: bezelImage)
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: bezelImage.size.width/recorder.selectedDevice!.screenSize.scaleFactor, height: bezelImage.size.height/recorder.selectedDevice!.screenSize.scaleFactor)
+                                        .frame(width: bezelImage.size.width/calculateScaleFactor(innerSize: viewSize, outerSize: CGSize(width: image.width+100, height: image.height+140)), height: bezelImage.size.height/calculateScaleFactor(innerSize: viewSize, outerSize: CGSize(width: image.width+100, height: image.height+140)))
                                 }
                             }
                         }
@@ -118,10 +138,8 @@ struct ContentView: View {
                 }
             }.onAppear {
                 viewSize = geometry.size
-                print("new size1 \(viewSize)")
             }.onChange(of: geometry.size) { newSize in
                 viewSize = newSize
-                print("new size \(viewSize)")
             }
         }
     }
@@ -130,10 +148,11 @@ struct ContentView: View {
 struct iPhoneFrameView: View {
     var image: CGImage
     var screenSize: ScreenSize
+    var viewSize: CGSize
     private let label = Text("Video feed")
     
     var body: some View {
-        Image(image, scale: screenSize.scaleFactor, orientation: .up, label: label)
+        Image(image, scale: calculateScaleFactor(innerSize: viewSize, outerSize: CGSize(width: image.width+100, height: image.height+140)), orientation: .up, label: label)
     }
 }
 
@@ -145,12 +164,6 @@ struct iPadFrameView: View {
     
     var body: some View {
         Image(image, scale: calculateScaleFactor(innerSize: viewSize, outerSize: CGSize(width: image.width+80, height: image.height+80)), orientation: .up, label: label)
-    }
-    
-    func calculateScaleFactor(innerSize: CGSize, outerSize: CGSize) -> CGFloat {
-        let widthScale = outerSize.width / innerSize.width
-        let heightScale = outerSize.height / innerSize.height
-        return max(widthScale, heightScale)
     }
 }
 
