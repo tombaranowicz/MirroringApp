@@ -13,25 +13,27 @@ struct screen_mirroringApp: App {
     @Environment(\.scenePhase) private var scenePhase
     
     var body: some Scene {
+//        MenuBarExtra("iPhone Mirror", systemImage: "rectangle.stack.fill") {
+//            //            ContentView()
+//            AppMenu()
+//        }.menuBarExtraStyle(.window)
+//        
         WindowGroup {
-            ContentView()            
+            ContentView()
         }
-        .windowResizabilityContentSize()
-//        .windowResizability(.contentSize) // Allow the window to be resized
-//                .defaultSize(width: 400, height: 400) // Set the default size
     }
 }
 
 class TransparentWindowView: NSView {
-  override func viewDidMoveToWindow() {
-    window?.backgroundColor = .clear
-    super.viewDidMoveToWindow()
-  }
+    override func viewDidMoveToWindow() {
+        window?.backgroundColor = .clear
+        super.viewDidMoveToWindow()
+    }
 }
 
 struct TransparentWindow: NSViewRepresentable {
-   func makeNSView(context: Self.Context) -> NSView { return TransparentWindowView() }
-   func updateNSView(_ nsView: NSView, context: Context) { }
+    func makeNSView(context: Self.Context) -> NSView { return TransparentWindowView() }
+    func updateNSView(_ nsView: NSView, context: Context) { }
 }
 
 extension Scene {
@@ -41,5 +43,20 @@ extension Scene {
         } else {
             return self
         }
+    }
+}
+
+struct AppMenu: View {
+    func action1() {}
+    func action2() {}
+    func action3() {}
+    
+    var body: some View {
+        Button(action: action1, label: { Text("Action 1") })
+        Button(action: action2, label: { Text("Action 2") })
+        
+        Divider()
+        
+        Button(action: action3, label: { Text("Action 3") })
     }
 }

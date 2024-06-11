@@ -75,6 +75,89 @@ struct Utils {
         "iPod5,1": "5th Gen iPod",
         "iPod7,1": "6th Gen iPod",
         "iPod9,1": "7th Gen iPod",
+  
+//        "iPad1,1": "iPad",
+//        "iPad1,2": "iPad",
+//        "iPad2,1": "iPad",
+//        "iPad2,2": "iPad",
+//        "iPad2,3": "iPad",
+//        "iPad2,4": "iPad",
+//        "iPad3,1": "iPad",
+//        "iPad3,2": "iPad",
+//        "iPad3,3": "iPad",
+//        "iPad2,5": "iPad mini",
+//        "iPad2,6": "iPad mini",
+//        "iPad2,7": "iPad mini",
+//        "iPad3,4": "iPad",
+//        "iPad3,5": "iPad",
+//        "iPad3,6": "iPad",
+//        "iPad4,1": "iPad",
+//        "iPad4,2": "iPad",
+//        "iPad4,3": "iPad",
+//        "iPad4,4": "iPad mini",
+//        "iPad4,5": "iPad mini",
+//        "iPad4,6": "iPad mini",
+//        "iPad4,7": "iPad mini",
+//        "iPad4,8": "iPad mini",
+//        "iPad4,9": "iPad mini",
+//        "iPad5,1": "iPad mini",
+//        "iPad5,2": "iPad mini",
+//        "iPad5,3": "iPad",
+//        "iPad5,4": "iPad",
+//        "iPad6,3": "iPad",
+//        "iPad6,4": "iPad",
+//        "iPad6,7": "iPad Pro 13",
+//        "iPad6,8": "iPad Pro 13",
+//        "iPad6,11": "iPad",
+//        "iPad6,12": "iPad",
+//        "iPad7,1": "iPad Pro 2nd Gen (WiFi)",
+//        "iPad7,2": "iPad Pro 2nd Gen (WiFi+Cellular)",
+//        "iPad7,3": "iPad Pro 10.5-inch 2nd Gen",
+//        "iPad7,4": "iPad Pro 10.5-inch 2nd Gen",
+//        "iPad7,5": "iPad 6th Gen (WiFi)",
+//        "iPad7,6": "iPad 6th Gen (WiFi+Cellular)",
+//        "iPad7,11": "iPad 7th Gen 10.2-inch (WiFi)",
+//        "iPad7,12": "iPad 7th Gen 10.2-inch (WiFi+Cellular)",
+//        "iPad8,1": "iPad Pro 11",
+//        "iPad8,2": "iPad Pro 11",
+//        "iPad8,3": "iPad Pro 11",
+//        "iPad8,4": "iPad Pro 11",
+//        "iPad8,5": "iPad Pro 13",
+//        "iPad8,6": "iPad Pro 13",
+//        "iPad8,7": "iPad Pro 13",
+//        "iPad8,8": "iPad Pro 13",
+//        "iPad8,9": "iPad Pro 11",
+//        "iPad8,10": "iPad Pro 11",
+//        "iPad8,11": "iPad Pro 13",
+//        "iPad8,12": "iPad Pro 13)",
+//        "iPad11,1": "iPad mini 5th Gen (WiFi)",
+//        "iPad11,2": "iPad mini 5th Gen",
+//        "iPad11,3": "iPad Air 11",
+//        "iPad11,4": "iPad Air 11",
+//        "iPad11,6": "iPad 8th Gen (WiFi)",
+//        "iPad11,7": "iPad 8th Gen (WiFi+Cellular)",
+//        "iPad12,1": "iPad 9th Gen (WiFi)",
+//        "iPad12,2": "iPad 9th Gen (WiFi+Cellular)",
+//        "iPad14,1": "iPad mini 6th Gen (WiFi)",
+//        "iPad14,2": "iPad mini 6th Gen (WiFi+Cellular)",
+//        "iPad13,1": "iPad Air 11",
+//        "iPad13,2": "iPad Air 1",
+//        "iPad13,4": "iPad Pro 11",
+//        "iPad13,5": "iPad Pro 11",
+//        "iPad13,6": "iPad Pro 11",
+//        "iPad13,7": "iPad Pro 11",
+//        "iPad13,8": "iPad Pro 13",
+//        "iPad13,9": "iPad Pro 13",
+//        "iPad13,10": "iPad Pro 13",
+//        "iPad13,11": "iPad Pro 13",
+//        "iPad13,16": "iPad Air 11",
+//        "iPad13,17": "iPad Air 11",
+//        "iPad13,18": "iPad 10th Gen",
+//        "iPad13,19": "iPad 10th Gen",
+//        "iPad14,3": "iPad Pro 11",
+//        "iPad14,4": "iPad Pro 11",
+//        "iPad14,5": "iPad Pro 13",
+//        "iPad14,6": "iPad Pro 13"
         
         "iPad1,1": "iPad",
         "iPad1,2": "iPad 3G",
@@ -542,44 +625,44 @@ struct Utils {
         "iPad7,6": 2.0,     // iPad 6th Gen (WiFi+Cellular)
         "iPad7,11": 2.0,    // iPad 7th Gen 10.2-inch (WiFi)
         "iPad7,12": 2.0,    // iPad 7th Gen 10.2-inch (WiFi+Cellular)
-        "iPad8,1": 3.0,     // iPad Pro 11 inch 3rd Gen (WiFi)
-        "iPad8,2": 3.0,     // iPad Pro 11 inch 3rd Gen (1TB, WiFi)
-        "iPad8,3": 3.0,     // iPad Pro 11 inch 3rd Gen (WiFi+Cellular)
-        "iPad8,4": 3.0,     // iPad Pro 11 inch 3rd Gen (1TB, WiFi+Cellular)
+        "iPad8,1": 2.0,     // iPad Pro 11 inch 3rd Gen (WiFi)
+        "iPad8,2": 2.0,     // iPad Pro 11 inch 3rd Gen (1TB, WiFi)
+        "iPad8,3": 2.0,     // iPad Pro 11 inch 3rd Gen (WiFi+Cellular)
+        "iPad8,4": 2.0,     // iPad Pro 11 inch 3rd Gen (1TB, WiFi+Cellular)
         "iPad8,5": 3.0,     // iPad Pro 12.9 inch 3rd Gen (WiFi)
         "iPad8,6": 3.0,     // iPad Pro 12.9 inch 3rd Gen (1TB, WiFi)
         "iPad8,7": 3.0,     // iPad Pro 12.9 inch 3rd Gen (WiFi+Cellular)
         "iPad8,8": 3.0,     // iPad Pro 12.9 inch 3rd Gen (1TB, WiFi+Cellular)
-        "iPad8,9": 3.0,     // iPad Pro 11 inch 4th Gen (WiFi)
-        "iPad8,10": 3.0,    // iPad Pro 11 inch 4th Gen (WiFi+Cellular)
+        "iPad8,9": 2.0,     // iPad Pro 11 inch 4th Gen (WiFi)
+        "iPad8,10": 2.0,    // iPad Pro 11 inch 4th Gen (WiFi+Cellular)
         "iPad8,11": 3.0,    // iPad Pro 12.9 inch 4th Gen (WiFi)
         "iPad8,12": 3.0,    // iPad Pro 12.9 inch 4th Gen (WiFi+Cellular)
-        "iPad11,1": 3.0,    // iPad mini 5th Gen (WiFi)
-        "iPad11,2": 3.0,    // iPad mini 5th Gen
-        "iPad11,3": 3.0,    // iPad Air 3rd Gen (WiFi)
-        "iPad11,4": 3.0,    // iPad Air 3rd Gen
+        "iPad11,1": 2.0,    // iPad mini 5th Gen (WiFi)
+        "iPad11,2": 2.0,    // iPad mini 5th Gen
+        "iPad11,3": 2.0,    // iPad Air 3rd Gen (WiFi)
+        "iPad11,4": 2.0,    // iPad Air 3rd Gen
         "iPad11,6": 2.0,    // iPad 8th Gen (WiFi)
         "iPad11,7": 2.0,    // iPad 8th Gen (WiFi+Cellular)
         "iPad12,1": 2.0,    // iPad 9th Gen (WiFi)
         "iPad12,2": 2.0,    // iPad 9th Gen (WiFi+Cellular)
-        "iPad14,1": 3.0,    // iPad mini 6th Gen (WiFi)
-        "iPad14,2": 3.0,    // iPad mini 6th Gen (WiFi+Cellular)
-        "iPad13,1": 3.0,    // iPad Air 4th Gen (WiFi)
-        "iPad13,2": 3.0,    // iPad Air 4th Gen (WiFi+Cellular)
-        "iPad13,4": 3.0,    // iPad Pro 11 inch 5th Gen
-        "iPad13,5": 3.0,    // iPad Pro 11 inch 5th Gen
-        "iPad13,6": 3.0,    // iPad Pro 11 inch 5th Gen
-        "iPad13,7": 3.0,    // iPad Pro 11 inch 5th Gen
+        "iPad14,1": 2.0,    // iPad mini 6th Gen (WiFi)
+        "iPad14,2": 2.0,    // iPad mini 6th Gen (WiFi+Cellular)
+        "iPad13,1": 2.0,    // iPad Air 4th Gen (WiFi)
+        "iPad13,2": 2.0,    // iPad Air 4th Gen (WiFi+Cellular)
+        "iPad13,4": 2.0,    // iPad Pro 11 inch 5th Gen
+        "iPad13,5": 2.0,    // iPad Pro 11 inch 5th Gen
+        "iPad13,6": 2.0,    // iPad Pro 11 inch 5th Gen
+        "iPad13,7": 2.0,    // iPad Pro 11 inch 5th Gen
         "iPad13,8": 3.0,    // iPad Pro 12.9 inch 5th Gen
         "iPad13,9": 3.0,    // iPad Pro 12.9 inch 5th Gen
         "iPad13,10": 3.0,   // iPad Pro 12.9 inch 5th Gen
         "iPad13,11": 3.0,   // iPad Pro 12.9 inch 5th Gen
-        "iPad13,16": 3.0,   // iPad Air 5th Gen (WiFi)
-        "iPad13,17": 3.0,   // iPad Air 5th Gen (WiFi+Cellular)
+        "iPad13,16": 2.0,   // iPad Air 5th Gen (WiFi)
+        "iPad13,17": 2.0,   // iPad Air 5th Gen (WiFi+Cellular)
         "iPad13,18": 2.0,   // iPad 10th Gen
         "iPad13,19": 2.0,   // iPad 10th Gen
-        "iPad14,3": 3.0,    // iPad Pro 11 inch 4th Gen
-        "iPad14,4": 3.0,    // iPad Pro 11 inch 4th Gen
+        "iPad14,3": 2.0,    // iPad Pro 11 inch 4th Gen
+        "iPad14,4": 2.0,    // iPad Pro 11 inch 4th Gen
         "iPad14,5": 3.0,    // iPad Pro 12.9 inch 6th Gen
         "iPad14,6": 3.0     // iPad Pro 12.9 inch 6th Gen
     ]
@@ -617,7 +700,7 @@ struct SelectedStreamingDevice: Equatable {
         var width: Int = 100
         var height: Int = 100
         var corneradius: Double = 0.0
-        var scaleFactor: Double = 1.0
+        var scaleFactor: Double = self.usbDevice.type == .iPhone ? 3.0 : 2.0
         
         let deviceId = "\(self.usbDevice.type == .iPhone ? "iPhone" : "iPad")\(self.usbDevice.major),\(self.usbDevice.minor)"
         
