@@ -75,44 +75,48 @@ struct ContentView: View {
     
     @StateObject private var recorder = Recorder()
     @State private var viewSize: CGSize = .zero
+//    @State private var scaleFactor: CGFloat = 2.0
     
     var body: some View {
         GeometryReader { geometry in
-            VStack {
-                if recorder.selectedDevice != nil {
-                    if let image = recorder.frame {
-                        ZStack {
-                            if recorder.selectedDevice!.usbDevice.type == .iPad {
-                                iPadFrameView(image: image, screenSize: recorder.selectedDevice!.screenSize, viewSize: self.viewSize)
-                                    .cornerRadius(10)
-                                    .iPadBezel()
-                                    .padding(10)
-                            } else {
-                                iPhoneFrameView(image: image, screenSize: recorder.selectedDevice!.screenSize, viewSize: self.viewSize)
-                                    .cornerRadius(recorder.selectedDevice!.screenSize.cornerRadius/calculateScaleFactor(innerSize: viewSize, outerSize: CGSize(width: image.width+100, height: image.height+140)))
-                                
-                                
-                                if let bezelImage = NSImage(named: "\(recorder.selectedDevice!.deviceName) - \(image.height > image.width ? "Portrait" : "Landscape")") {
-                                    Image(nsImage: bezelImage)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: bezelImage.size.width/calculateScaleFactor(innerSize: viewSize, outerSize: CGSize(width: image.width+100, height: image.height+140)), height: bezelImage.size.height/calculateScaleFactor(innerSize: viewSize, outerSize: CGSize(width: image.width+100, height: image.height+140)))
+            HStack {
+                Spacer()
+                VStack {
+                    if recorder.selectedDevice != nil {
+                        if let image = recorder.frame {
+                            ZStack {
+                                if recorder.selectedDevice!.usbDevice.type == .iPad {
+                                    iPadFrameView(image: image, screenSize: recorder.selectedDevice!.screenSize, viewSize: self.viewSize)
+                                        .cornerRadius(10)
+                                        .iPadBezel()
+                                        .padding(10)
+                                } else {
+                                    FrameView(image: image, scaleFactor: calculateScaleFactor(innerSize: viewSize, outerSize: CGSize(width: image.width+140, height: image.height+140)))
+                                        .cornerRadius(recorder.selectedDevice!.screenSize.cornerRadius/calculateScaleFactor(innerSize: viewSize, outerSize: CGSize(width: image.width+140, height: image.height+140)))
+                                    
+                                    if let bezelImage = NSImage(named: "\(recorder.selectedDevice!.deviceName) - \(image.height > image.width ? "Portrait" : "Landscape")") {
+                                        Image(nsImage: bezelImage)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: bezelImage.size.width/calculateScaleFactor(innerSize: viewSize, outerSize: CGSize(width: image.width+140, height: image.height+140)), height: bezelImage.size.height/calculateScaleFactor(innerSize: viewSize, outerSize: CGSize(width: image.width+140, height: image.height+140)))
+                                    }
                                 }
                             }
+                            .background(TransparentWindow())
+                        } else {
+                            VStack {
+                                Text("Preparing device:\n\n\(recorder.selectedDevice!.captureDevice.localizedName)\n\n\nPlease make sure it's connected and unlocked.").frame(width: 400, height: 400).multilineTextAlignment(.center)
+                                ProgressView() // This creates a spinner
+                            }.padding()
                         }
-                        .background(TransparentWindow())
                     } else {
                         VStack {
-                            Text("Preparing device:\n\n\(recorder.selectedDevice!.captureDevice.localizedName)\n\n\nPlease make sure it's connected and unlocked.").frame(width: 400, height: 400).multilineTextAlignment(.center)
+                            Text("Please connect the device").frame(width: 200, height: 50)
                             ProgressView() // This creates a spinner
-                        }.padding()
+                        }.padding(50)//.background(TransparentWindow())
                     }
-                } else {
-                    VStack {
-                        Text("Please connect the device").frame(width: 200, height: 50)
-                        ProgressView() // This creates a spinner
-                    }.padding(50)//.background(TransparentWindow())
                 }
+                Spacer()
             }
             .onChange(of: recorder.selectedDevice) { newDevice in
                 if let device = newDevice {
@@ -138,10 +142,21 @@ struct ContentView: View {
                 }
             }.onAppear {
                 viewSize = geometry.size
+//                scaleFactor = calculateScaleFactor(innerSize: viewSize, outerSize: <#T##CGSize#>)
             }.onChange(of: geometry.size) { newSize in
                 viewSize = newSize
             }
         }
+    }
+}
+
+struct FrameView: View {
+    var image: CGImage
+    var scaleFactor: CGFloat
+    private let label = Text("Video feed")
+    
+    var body: some View {
+        Image(image, scale: scaleFactor, orientation: .up, label: label)
     }
 }
 

@@ -758,6 +758,6 @@ extension View {
     func calculateScaleFactor(innerSize: CGSize, outerSize: CGSize) -> CGFloat {
         let widthScale = outerSize.width / innerSize.width
         let heightScale = outerSize.height / innerSize.height
-        return max(widthScale, heightScale)
+        return max(widthScale, heightScale)*1.05
     }
 }
