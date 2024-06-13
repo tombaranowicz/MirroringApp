@@ -35,40 +35,12 @@ struct iPadBezelView<Content: View>: View {
     }
 }
 
-//struct iPhoneBezelView<Content: View>: View {
-//    var content: Content
-//    
-//    init(@ViewBuilder content: () -> Content) {
-//        self.content = content()
-//    }
-//    
-//    var body: some View {
-//        
-//        
-//        content
-//            .padding(.horizontal, 16) // Add horizontal padding
-//            .padding(.vertical, 24)   // Add vertical padding
-//            .background(Color.black)  // Background color to simulate bezel
-//            .clipShape(RoundedRectangle(cornerRadius: 60, style: .continuous)) // Rounded corners
-//            .overlay(
-//                RoundedRectangle(cornerRadius: 60, style: .continuous)
-//                    .stroke(Color.gray, lineWidth: 2) // Border stroke
-//            )
-//    }
-//}
-
 extension View {
     func iPadBezel() -> some View {
         iPadBezelView {
             self
         }
     }
-    
-//    func iPhoneBezel() -> some View {
-//        iPhoneBezelView {
-//            self
-//        }
-//    }
 }
 
 struct ContentView: View {
@@ -86,13 +58,13 @@ struct ContentView: View {
                         if let image = recorder.frame {
                             ZStack {
                                 if recorder.selectedDevice!.usbDevice.type == .iPad {
-                                    iPadFrameView(image: image, screenSize: recorder.selectedDevice!.screenSize, viewSize: self.viewSize)
+                                    iPadFrameView(image: image, viewSize: self.viewSize)
                                         .cornerRadius(10)
                                         .iPadBezel()
                                         .padding(10)
                                 } else {
                                     FrameView(image: image, scaleFactor: calculateScaleFactor(innerSize: viewSize, outerSize: CGSize(width: image.width+140, height: image.height+140)))
-                                        .cornerRadius(recorder.selectedDevice!.screenSize.cornerRadius/calculateScaleFactor(innerSize: viewSize, outerSize: CGSize(width: image.width+140, height: image.height+140)))
+                                        .cornerRadius(recorder.selectedDevice!.cornerRadius/calculateScaleFactor(innerSize: viewSize, outerSize: CGSize(width: image.width+140, height: image.height+140)))
                                     
                                     if let bezelImage = NSImage(named: "\(recorder.selectedDevice!.deviceName) - \(image.height > image.width ? "Portrait" : "Landscape")") {
                                         Image(nsImage: bezelImage)
@@ -127,6 +99,7 @@ struct ContentView: View {
                 self.recorder.startRecorder()
             }
             .navigationTitle((recorder.selectedDevice != nil) ? recorder.selectedDevice!.captureDevice.localizedName : "")
+            .navigationSubtitle((recorder.selectedDevice != nil) ? recorder.selectedDevice!.deviceName : "")
             .toolbar {
                 ToolbarItemGroup(placement: .primaryAction) {
                     Menu {
@@ -142,7 +115,6 @@ struct ContentView: View {
                 }
             }.onAppear {
                 viewSize = geometry.size
-//                scaleFactor = calculateScaleFactor(innerSize: viewSize, outerSize: <#T##CGSize#>)
             }.onChange(of: geometry.size) { newSize in
                 viewSize = newSize
             }
@@ -160,20 +132,8 @@ struct FrameView: View {
     }
 }
 
-struct iPhoneFrameView: View {
-    var image: CGImage
-    var screenSize: ScreenSize
-    var viewSize: CGSize
-    private let label = Text("Video feed")
-    
-    var body: some View {
-        Image(image, scale: calculateScaleFactor(innerSize: viewSize, outerSize: CGSize(width: image.width+100, height: image.height+140)), orientation: .up, label: label)
-    }
-}
-
 struct iPadFrameView: View {
     var image: CGImage
-    var screenSize: ScreenSize
     var viewSize: CGSize
     private let label = Text("Video feed")
     
